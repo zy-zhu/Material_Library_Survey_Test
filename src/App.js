@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Head from './Components/head';
+import {Card, Row, Col} from 'react-bootstrap';
+
 
 class App extends Component {
 
@@ -19,13 +22,15 @@ componentDidMount(){
   });
 }
 
-  render() {
+  
+render() {
     return (
       <div className="container mt-5">
-        <div className="row">  
+        <Head></Head>
+        <Row xs={3} md={4} className="g-4">
+ 
 {this.state.materials.map(material=><MaterialCard{...material.fields}/>)}
-   
-          </div>
+          </Row>
       </div>//this is the frontend, where cards displayed
     );
   }
@@ -35,16 +40,19 @@ export default App;
 
 
 const MaterialCard = ({name,time,description,imageURL}) => (
-  <div className='col'>
-  <div className="card">
-    <img className="card-img-top" src={imageURL[0].url} alt="Card poster" />
-    <div className="card-body">
+<Col>
+  <Card  style={{ width: '15rem' }}>
+    <img className="card-img-top" src={imageURL[0].url} alt="Card" />
+    <Card.Body>
       <h5 className="card-title">{name}</h5>
       <p className="card-text">{description}</p>
-      <p className="card-text">
+      <Card.Text>
         <small className="text-muted">{time}</small>
-      </p>
-    </div>
-  </div>
-  </div> //this is the survey result 
+      </Card.Text>
+    </Card.Body>
+  </Card> 
+
+  </Col>
+  
+  //this is the survey result 
 );
